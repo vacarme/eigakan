@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# mise description="Generates a dbml file from the api schema."
+# mise alias="dbml"
+# mise sources=["db/api.sql"]
+# mise outputs=["db/api.dbml"]
+
+echo "Dumping and creating the dbml file for the api schema."
+    sql2dbml db/api.sql --postgres -o db/api.dbml 2> /dev/null
+    if [ $? -eq 0 ]; then
+        echo "'db/api.dbml' created!"
+    else
+        echo "Failed to create 'db/api.dbml', is sql2dbml available in your PATH! ?"
+        exit 1
+    fi
+fi
