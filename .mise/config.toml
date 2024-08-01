@@ -16,6 +16,11 @@ run = "uvicorn eigakan.main:app --reload --log-level info"
 alias = 'api'
 description = "Start the web server." # mr api --port 8001
 
+[tasks."db:conn"]
+run = 'psql -d postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}'
+alias = 'db'
+description = 'Open a subshell into the database.'
+
 [tasks."db:up"]
 run = 'docker compose -f docker/compose.yaml up db -d'
 alias = 'dbu'
@@ -24,27 +29,12 @@ alias = 'dbu'
 run = 'docker compose -f docker/compose.yaml down -v'
 alias = 'dbd'
 
-[tasks."db:seed"]
-run = 'db -u ${DB_USER} -w ${DB_PASSWORD} -p ${DB_PORT} --host ${DB_HOST} -d ${DB_NAME} seed'
-alias = 'dbs'
-depends = ['db:create']
-
 [tasks."db:reset"]
 run = [
     'docker compose -f docker/compose.yaml down -v',
-    'docker compose -f docker/compose.yaml up db -d',
-    'db -u ${DB_USER} -w ${DB_PASSWORD} -p ${DB_PORT} --host ${DB_HOST} -d ${DB_NAME} seed' 
+    'docker compose -f docker/compose.yaml up db -d'
 ]
 alias = 'dbr'
-
-[tasks."db:conn"]
-run = 'psql -d postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}'
-alias = 'db'
-description = 'Open a subshell into the database.'
-
-[tasks."db:drop"]
-run = 'db -u ${DB_USER} -w ${DB_PASSWORD} -p ${DB_PORT} --host ${DB_HOST} -d ${DB_NAME} drop'
-alias = 'dbd'
 
 [tasks."db:dump"]
 run = 'pg_dump -d postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}  -s --schema api > db/api.sql'
