@@ -20,8 +20,10 @@ class CoreMixin:
 
     __table_args__: ClassVar[dict[str, str]] = {"schema": CORE_SCHEMA}
 
+
 class SequentialIdMixin(CoreMixin):
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+
 
 class RandomIdMixin(CoreMixin):
     id: Mapped[uuid.UUID] = mapped_column(

@@ -12,6 +12,7 @@ from eigakan.models import RandomIdMixin
 if TYPE_CHECKING:
     from eigakan.theater.models import Theater
 
+
 class Owner(Base, AsyncAttrs, RandomIdMixin):
     """Mapped class representing an owner."""
 

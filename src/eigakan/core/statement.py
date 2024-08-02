@@ -116,7 +116,7 @@ class ReadOneBy[Model: M](Statement):
     ) -> None:
         if not self._is_unique_column(model, column):
             raise ColumnCannotbeUsedToReadOne(column, model.__name__)
-        super().__init__(model, *updaters, ScalarUpdater(column, value, model))
+        super().__init__(model, *updaters, ScalarUpdater(model, column, value))
         self._strategy = strategy
         self._rec = column, value
 

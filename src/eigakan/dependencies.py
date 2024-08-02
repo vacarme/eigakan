@@ -1,8 +1,11 @@
-from typing import Annotated
+from typing import Annotated, Type
+from uuid import UUID
 
 from fastapi import Depends, Query
 
+from eigakan.core.statement import ReadOneBy
 from eigakan.core.updaters import Pagination as _Pagination
+from eigakan.types import M
 
 
 def _parse_pagination(
@@ -31,3 +34,12 @@ def _parse_pagination(
 
 
 Pagination = Annotated[_Pagination, Depends(_parse_pagination)]
+
+
+class ResourceInjecter:
+    def __init__(self, model: Type[M]):
+        self._model = model
+
+    async def __call__(self, id: UUID):
+        """session could be used here, does it damaged performance ?"""
+        return ReadOneBy("id", id, self._model)

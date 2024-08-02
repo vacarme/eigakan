@@ -8,7 +8,7 @@ from .middleware import MIDDLEWARES
 from .slow import limiter
 
 app = FastAPI(
-    exception_handlers=EXC_HANDLERS,  # type: ignore
+    exception_handlers=EXC_HANDLERS["app"],  # type: ignore
     openapi_url=None,
     middleware=MIDDLEWARES["app"],
 )
@@ -19,6 +19,7 @@ frontend = FastAPI(openapi_url="", middleware=MIDDLEWARES["frontend"])
 api = FastAPI(
     middleware=MIDDLEWARES["api"],
     openapi_url="/docs/openapi.json",
+    exception_handlers=EXC_HANDLERS["api"],  # type: ignore
 )
 api.include_router(api_router, prefix="/api")
 # we mount the frontend and app

@@ -60,23 +60,3 @@ class Theater(Base, AsyncAttrs, RandomIdMixin):
 
 
 Index("idx_wheel_screen", Theater.accessibility_id, Theater.nb_screens)
-
-
-if __name__ == "__main__":
-
-    import asyncio
-
-    from sqlalchemy import select
-    from sqlalchemy.orm import selectinload
-
-    from eigakan.database.core import AsyncSessionFactory
-
-    async def tr():
-        async with AsyncSessionFactory() as sess:
-            a = await sess.scalar(
-            select(Theater).options(selectinload(Theater.accessibility))
-        )
-        return a
-    b = asyncio.run(tr())
-    # print(b.accessibility.name)
-

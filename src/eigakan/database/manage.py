@@ -66,7 +66,7 @@ def seed():
         elapsed_time = int(1000 * (time() - start))
         print(
             "Tables created and seeded to",
-            f"{DATABASE.NAME} in {elapsed_time} ms:"
+            f"{DATABASE.NAME} in {elapsed_time} ms:",
         )
 
         for table in get_core_tables():
