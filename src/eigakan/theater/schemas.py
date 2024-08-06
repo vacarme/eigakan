@@ -61,7 +61,6 @@ class TheaterCreate(BaseModel):
     phone: str
     facebook: str | None
     wikidata: str | None
-    siret: int
     accessibility_id: int
     city_insee: str
     city_name: str | None
@@ -96,7 +95,6 @@ class TheaterUpdate(TheaterCreate):
     phone: str | None = None
     facebook: str | None = None
     wikidata: str | None = None
-    siret: int | None = None
     accessibility_id: int | None = None
     city_insee: str | None = None
     city_name: str | None = None

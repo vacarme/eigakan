@@ -21,7 +21,7 @@ api = FastAPI(
     openapi_url="/docs/openapi.json",
     exception_handlers=EXC_HANDLERS["api"],  # type: ignore
 )
-api.include_router(api_router, prefix="/api")
+api.include_router(api_router)
 # we mount the frontend and app
 if APP.STATIC_DIR and APP.STATIC_DIR.is_dir():
     frontend.mount("/", StaticFiles(directory=APP.STATIC_DIR), name="app")

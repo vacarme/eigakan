@@ -10,6 +10,8 @@ DB_PORT = 5432
 DB_NAME = "eigakan"
 LOG_LEVEL = "DEBUG"
 STATIC_DIR = "static"
+JWT_SECRET = "eh*BVPk$bj2#VvSdZ7QUJZSM"
+JWT_HOURS_TO_EXPIRE = 12
 
 [tasks.start-uvicorn]
 run = "uvicorn eigakan.main:app --reload --log-level info"

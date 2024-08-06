@@ -34,8 +34,17 @@ class DATABASE:
     )
 
 
+@dataclass(repr=False, eq=False, frozen=True)
 class APP:
     """Application level configuration."""
 
     LOG_LEVEL: str = config("LOG_LEVEL", cast=str, default="INFO")
     STATIC_DIR: Path = config("STATIC_DIR", cast=Path)
+
+
+@dataclass(repr=False, eq=False, frozen=True)
+class JWT:
+    """JWT configuration."""
+
+    SECRET: Secret = config("JWT_SECRET", cast=Secret)
+    HOURS_TO_EXPIRE: int = config("JWT_HOURS_TO_EXPIRE", cast=int, default=24)

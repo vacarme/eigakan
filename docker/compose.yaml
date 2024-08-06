@@ -34,6 +34,8 @@ services:
       - DB_NAME=${DB_NAME}
       - LOG_LEVEL=${LOG_LEVEL}
       - STATIC_DIR=${STATIC_DIR}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_HOURS_TO_EXPIRE=${JWT_HOURS_TO_EXPIRE}
     ports:
       - "8000:8000"
 

@@ -4,8 +4,14 @@ from typing import TYPE_CHECKING
 
 from geopandas import read_file
 from pandas import read_csv
-from sqlalchemy import create_engine, text
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import (
+    BigInteger,
+    Boolean,
+    DateTime,
+    LargeBinary,
+    create_engine,
+    text,
+)
 from sqlalchemy.pool import NullPool
 from sqlalchemy.schema import CreateSchema, DropSchema
 
@@ -54,13 +60,19 @@ def seed():
         cine.to_postgis(
             "theater", conn, schema=CORE_SCHEMA, if_exists="append"
         )
+        owner["password"] = owner.password.astype(bytes)
         owner.to_sql(
             "owner",
             conn,
             schema=CORE_SCHEMA,
             if_exists="append",
             index=False,
-            dtype={"id": UUID},
+            dtype={
+                "siret": BigInteger,
+                "password": LargeBinary,
+                "disabled": Boolean,
+                "created_at": DateTime,
+            },
         )
 
         elapsed_time = int(1000 * (time() - start))

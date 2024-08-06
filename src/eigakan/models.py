@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 from typing import ClassVar
 
-from sqlalchemy import BigInteger, DateTime, event
+from sqlalchemy import BigInteger, DateTime, event, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, declared_attr, mapped_column
 
@@ -22,7 +22,9 @@ class CoreMixin:
 
 
 class SequentialIdMixin(CoreMixin):
-    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+    id: Mapped[int] = mapped_column(
+        BigInteger, primary_key=True, sort_order=-999
+    )
 
 
 class RandomIdMixin(CoreMixin):
@@ -39,10 +41,13 @@ class TimeStampMixin:
     """Timestamping mixin"""
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime, default=datetime.now
+        DateTime,
+        server_default=func.now(),
     )
     updated_at: Mapped[datetime] = mapped_column(
-        DateTime, default=datetime.now
+        DateTime,
+        server_default=func.now(),
+        nullable=True,
     )
 
     @staticmethod

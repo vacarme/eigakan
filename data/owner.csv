@@ -1,2 +1,2 @@
-id,siret
-56a6c784-86a5-4432-8e52-51ab4a5ee86d,50763357600016
+id,siret,email,password,disabled,created_at
+1,50763357600016,alex@nd.re,"$argon2id$v=19$m=65536,t=3,p=4$C8sZ+zcwJmw9cs0bl2TU6Q$ts95sHpKL7nL2NXMEE1p2ZQp8ftbxGf3T7bzr6djXts",0,2024-08-06 09:26:48.584002+00:00

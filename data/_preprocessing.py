@@ -77,7 +77,7 @@ def wheelchair(gdf: GeoDataFrame):
 @step
 def lowerized_text(gdf: GeoDataFrame):
     for col in ("name", "marque", "com_nom", "opening_hours"):
-        gdf[col] = gdf.name.str.lower()
+        gdf[col] = gdf[col].str.lower()
 
 
 def preprocess(gdf: GeoDataFrame) -> None:
