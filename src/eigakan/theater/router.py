@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException, Response
 
 from eigakan.auth.dependencies import CurrentUser
 from eigakan.core.cud import CUD
-from eigakan.core.statement import ReadAllLines, ReadOneBy, RealAll
+from eigakan.core.statement import ReadAll, ReadAllLines, ReadOneBy
 from eigakan.database.core import Session
 from eigakan.dependencies import Pagination, ResourceInjecter
 from eigakan.logger import logger
@@ -34,7 +34,7 @@ async def read_resource(
     session: Session,
 ):
     """Read all nearest theaters."""
-    stmt = RealAll(
+    stmt = ReadAll(
         Theater,
         accessibility,
         screens_number,

@@ -71,7 +71,7 @@ class Statement(ABC):
         return next(c for c in columns if c.primary_key)
 
 
-class RealAll[Model: M](Statement):
+class ReadAll[Model: M](Statement):
     def __init__(
         self,
         model: Type[Model],

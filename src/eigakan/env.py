@@ -1,6 +1,7 @@
 """Environment parser."""
 
 # ruff: noqa: RUF009
+import warnings
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -8,10 +9,8 @@ from sqlalchemy.engine.url import URL as DB_URL
 from starlette.config import Config
 from starlette.datastructures import Secret
 
-try:
+with warnings.catch_warnings(action="ignore"):
     config = Config(".env")
-except FileNotFoundError:
-    config = Config()
 
 
 @dataclass(repr=False, eq=False, frozen=True)
