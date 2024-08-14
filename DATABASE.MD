@@ -1,4 +1,6 @@
 # Query Analysis
+⚠️ *outdated since data model has been changed.*
+
 
 As is table' sizes are:
 ```shell

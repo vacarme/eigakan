@@ -25,7 +25,6 @@ API interactive swagger should be available at http://localhost:8000/api/docs, u
 + username: alex@nd.re
 + pwd: aloha
 # TODO
-+ testing
 + cli
 # References
 This project is inspired by netflix's [dispatch](https://github.com/Netflix/dispatch) repo.
