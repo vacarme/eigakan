@@ -13,8 +13,8 @@ STATIC_DIR = "static"
 JWT_SECRET = "eh*BVPk$bj2#VvSdZ7QUJZSM"
 JWT_HOURS_TO_EXPIRE = 12
 
-[tasks.start-uvicorn]
-run = "uvicorn eigakan.main:app --reload --log-level info"
+[tasks.start-server]
+run = "granian --interface asgi --reload --log-level info eigakan.main:app"
 alias = 'api'
 description = "Start the web server." # mr api --port 8001
 

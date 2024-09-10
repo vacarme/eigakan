@@ -23,5 +23,5 @@ USER alex
 COPY src/eigakan eigakan
 COPY static static
 EXPOSE 8000
-ENTRYPOINT ["uvicorn"]
-CMD ["eigakan.main:app", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["granian"]
+CMD ["--interface", "asgi", "--host", "0.0.0.0", "--port", "8000", "eigakan.main:app"]
